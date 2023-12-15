@@ -26,11 +26,9 @@
     "drupal/token": "^1.0"
   },
   "require-dev": {
-    "drupal/devel": "^4.0 || ^5.0",
     "drupal/hal": "^1 || ^2 || ^9",
     "drupal/page_manager": "^4.0",
     "drupal/redirect": "^1.0",
-    "drupal/webprofiler": "^9 || ^10",
     "ergebnis/composer-normalize": "*",
     "mpyw/phpunit-patch-serializable-comparison": "*"
   },

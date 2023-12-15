@@ -5,6 +5,7 @@ Metatag 2.0.x, 2023-xx-xx
 #3386862 by DamienMcKenna: Additional entity types to ignore.
 #3390226 by DamienMcKenna: Normalize the composer.json file using
   ergebnis/composer-normalize.
+#3408825 by DamienMcKenna: Remove Devel, WebProfiler tests.
 
 
 Metatag 2.0.0, 2023-06-27
