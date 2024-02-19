@@ -72,7 +72,7 @@ class MetatagFieldTermTest extends MetatagFieldTestBase {
   /**
    * {@inheritdoc}
    */
-  protected $entityFieldAdminPath = 'admin/structure/taxonomy/manage/tags/overview/fields';
+  protected $entityFieldAdminPath = 'admin/structure/taxonomy/manage/tags/overview';
 
   /**
    * {@inheritdoc}

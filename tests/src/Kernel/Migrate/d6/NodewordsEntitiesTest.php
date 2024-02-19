@@ -91,19 +91,19 @@ class NodewordsEntitiesTest extends MigrateDrupal6TestBase {
     $this->installSchema('system', ['sequences']);
     $this->installEntitySchema('metatag_defaults');
 
-    $this->executeMigrations([
-      'd6_nodewords_field',
-      'd6_node_type',
-      'd6_taxonomy_vocabulary',
-      'd6_nodewords_field',
-      'd6_nodewords_field_instance',
-      'd6_filter_format',
-      'd6_user_role',
-      'd6_user',
-      'd6_comment_type',
-      'd6_field',
-      'd6_field_instance',
-    ]);
+    // Run each migration to avoid problems. No, it's not clear why.
+    $this->executeMigrations(['d6_nodewords_field']);
+    $this->executeMigrations(['d6_node_type']);
+    $this->executeMigrations(['d6_taxonomy_vocabulary']);
+    $this->executeMigrations(['d6_nodewords_field']);
+    $this->executeMigrations(['d6_nodewords_field_instance']);
+    $this->executeMigrations(['d6_filter_format']);
+    $this->executeMigrations(['d6_user_role']);
+    $this->executeMigrations(['d6_user']);
+    $this->executeMigrations(['d6_comment_type']);
+    $this->executeMigrations(['d6_field']);
+    $this->executeMigrations(['d6_field_instance']);
+
     $this->fileMigrationSetup();
     $this->executeMigrations([
       'd6_node_settings',
@@ -136,7 +136,9 @@ class NodewordsEntitiesTest extends MigrateDrupal6TestBase {
     ];
     $this->assertSame(Json::encode($expected), $node->field_metatag->value);
 
-    $node = node_revision_load(2004);
+    $node_storage_manager = \Drupal::entityTypeManager()
+      ->getStorage('node');
+    $node = $node_storage_manager->loadRevision(2004);
     $this->assertInstanceOf(NodeInterface::class, $node);
     $this->assertTrue($node->hasField('field_metatag'));
     // This should have the "old revision" keywords value, indicating it is

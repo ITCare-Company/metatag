@@ -6,6 +6,8 @@ Metatag 2.0.x, 2023-xx-xx
 #3390226 by DamienMcKenna: Normalize the composer.json file using
   ergebnis/composer-normalize.
 #3408825 by DamienMcKenna: Remove Devel, WebProfiler tests.
+#3413633 by Nikolay Shapovalov, DamienMcKenna, Mingsong: Fix tests for,
+  compatibility with Drupal 10.2.
 
 
 Metatag 2.0.0, 2023-06-27

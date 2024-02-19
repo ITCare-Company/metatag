@@ -2,17 +2,19 @@
 
 namespace Drupal\Tests\metatag\Functional;
 
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\Tests\BrowserTestBase;
-use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\Tests\field_ui\Traits\FieldUiTestTrait;
 
 /**
  * Ensures that meta tag values are translated correctly on nodes.
  *
  * @group metatag
  */
-class NodeTranslationTest extends BrowserTestBase {
+class MetatagNodeTranslationTest extends BrowserTestBase {
 
+  use FieldUiTestTrait;
   use StringTranslationTrait;
 
   /**
@@ -87,6 +89,7 @@ class NodeTranslationTest extends BrowserTestBase {
   public function testMetatagValueTranslation() {
     $save_label_i18n = 'Save (this translation)';
 
+    // @todo Move to setUp.
     // Set up a content type.
     $name = $this->randomMachineName() . ' ' . $this->randomMachineName();
     $this->drupalLogin($this->adminUser);
@@ -102,25 +105,17 @@ class NodeTranslationTest extends BrowserTestBase {
       'language_configuration[language_alterable]' => TRUE,
       'language_configuration[content_translation]' => TRUE,
     ];
-    $this->submitForm($edit, $this->t('Save content type'));
+    $this->submitForm($edit, $this->t('Save'));
     $session->statusCodeEquals(200);
 
-    $this->drupalGet('admin/structure/types/manage/metatag_node/fields/add-field');
-    $session->statusCodeEquals(200);
-    $edit = [
-      'label' => 'Meta tags',
-      'field_name' => 'meta_tags',
-      'new_storage_type' => 'metatag',
-    ];
-    $this->submitForm($edit, $this->t('Save and continue'));
-    $session->statusCodeEquals(200);
-    $this->submitForm([], $this->t('Save field settings'));
-    $session->statusCodeEquals(200);
-    $edit = [
-      'translatable' => TRUE,
-    ];
-    $this->submitForm($edit, $this->t('Save settings'));
-    $session->statusCodeEquals(200);
+    $this->fieldUIAddNewField(
+      'admin/structure/types/manage/metatag_node',
+      'meta_tags',
+      'Metatag',
+      'metatag',
+      [],
+      ['translatable' => TRUE]
+    );
     $this->drupalGet('admin/structure/types/manage/metatag_node/fields/node.metatag_node.field_meta_tags');
     $session->statusCodeEquals(200);
 

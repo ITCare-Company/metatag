@@ -24,6 +24,7 @@ class MetatagSerializationTest extends EntityKernelTestBase {
   protected static $modules = [
     // Core modules.
     'serialization',
+    'file',
 
     // Contrib modules.
     'token',

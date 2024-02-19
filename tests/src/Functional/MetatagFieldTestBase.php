@@ -5,12 +5,14 @@ namespace Drupal\Tests\metatag\Functional;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Tests\BrowserTestBase;
+use Drupal\Tests\field_ui\Traits\FieldUiTestTrait;
 
 /**
  * Base class for ensuring that the Metatag field works correctly.
  */
 abstract class MetatagFieldTestBase extends BrowserTestBase {
 
+  use FieldUiTestTrait;
   use StringTranslationTrait;
 
   /**
@@ -168,15 +170,7 @@ abstract class MetatagFieldTestBase extends BrowserTestBase {
    */
   protected function addField(): void {
     // Add a metatag field to the entity type test_entity.
-    $this->drupalGet($this->entityFieldAdminPath . '/add-field');
-    $this->assertSession()->statusCodeEquals(200);
-    $edit = [
-      'label' => 'Metatag',
-      'field_name' => 'metatag',
-      'new_storage_type' => 'metatag',
-    ];
-    $this->submitForm($edit, $this->t('Save and continue'));
-    $this->submitForm([], $this->t('Save field settings'));
+    $this->fieldUIAddNewField($this->entityFieldAdminPath, 'metatag', 'Metatag', 'metatag');
 
     // Clear all settings.
     $this->container->get('entity_field.manager')->clearCachedFieldDefinitions();
@@ -267,10 +261,10 @@ abstract class MetatagFieldTestBase extends BrowserTestBase {
    * Confirm a field can be added to the entity bundle.
    */
   public function testFieldCanBeAdded() {
-    $this->drupalGet($this->entityFieldAdminPath . '/add-field');
+    $this->drupalGet($this->entityFieldAdminPath . '/fields/add-field');
     $session = $this->assertSession();
     $session->statusCodeEquals(200);
-    $session->responseContains('<option value="metatag">' . $this->t('Meta tags') . '</option>');
+    $session->elementExists('css', 'label:contains(' . $this->t('Meta tags') . ')');
   }
 
   /**

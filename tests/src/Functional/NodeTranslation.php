@@ -63,7 +63,7 @@ class NodeTranslation extends BrowserTestBase {
     $edit = [
       'language_configuration[content_translation]' => TRUE,
     ];
-    $this->submitForm($edit, 'Save content type');
+    $this->submitForm($edit, 'Save');
   }
 
   /**

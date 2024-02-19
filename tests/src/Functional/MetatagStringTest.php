@@ -2,8 +2,9 @@
 
 namespace Drupal\Tests\metatag\Functional;
 
-use Drupal\Tests\BrowserTestBase;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\Tests\BrowserTestBase;
+use Drupal\Tests\field_ui\Traits\FieldUiTestTrait;
 
 /**
  * Ensures that the Metatag field works correctly.
@@ -12,6 +13,7 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
  */
 class MetatagStringTest extends BrowserTestBase {
 
+  use FieldUiTestTrait;
   use StringTranslationTrait;
 
   /**
@@ -69,17 +71,7 @@ class MetatagStringTest extends BrowserTestBase {
     ]);
 
     // Add a Metatag field to the content type.
-    $this->drupalGet('admin/structure/types');
-    $this->assertSession()->statusCodeEquals(200);
-    $this->drupalGet('admin/structure/types/manage/page/fields/add-field');
-    $this->assertSession()->statusCodeEquals(200);
-    $edit = [
-      'label' => 'Metatag',
-      'field_name' => 'metatag_field',
-      'new_storage_type' => 'metatag',
-    ];
-    $this->submitForm($edit, $this->t('Save and continue'));
-    $this->submitForm([], $this->t('Save field settings'));
+    $this->fieldUIAddNewField('admin/structure/types/manage/page', 'metatag_field', 'Metatag', 'metatag');
     $this->container->get('entity_field.manager')->clearCachedFieldDefinitions();
   }
 

@@ -2,8 +2,9 @@
 
 namespace Drupal\Tests\metatag\Functional;
 
-use Drupal\Tests\BrowserTestBase;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\Tests\BrowserTestBase;
+use Drupal\Tests\field_ui\Traits\FieldUiTestTrait;
 
 /**
  * Verify that different meta tag API options are supported.
@@ -12,6 +13,7 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
  */
 class MetatagApiTest extends BrowserTestBase {
 
+  use FieldUiTestTrait;
   use StringTranslationTrait;
 
   /**
@@ -83,15 +85,7 @@ class MetatagApiTest extends BrowserTestBase {
     $this->drupalLogin($this->adminUser);
 
     // Add a metatag field to the entity type test_entity.
-    $this->drupalGet('entity_test/structure/entity_test/fields/add-field');
-    $this->assertSession()->statusCodeEquals(200);
-    $edit = [
-      'label' => 'Metatag',
-      'field_name' => 'metatag',
-      'new_storage_type' => 'metatag',
-    ];
-    $this->submitForm($edit, $this->t('Save and continue'));
-    $this->submitForm([], $this->t('Save field settings'));
+    $this->fieldUIAddNewField('admin/structure/types/manage/entity_test', 'metatag', 'Metatag', 'metatag');
     $this->container->get('entity_field.manager')
       ->clearCachedFieldDefinitions();
   }

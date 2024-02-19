@@ -95,6 +95,10 @@ function metatag_form_field_config_edit_form_alter(&$form, FormStateInterface $f
     $form['default_value']['#access'] = FALSE;
     $form['default_value']['#disabled'] = TRUE;
 
+    // Hide the cardinality field.
+    $form['cardinality_container']['#access'] = FALSE;
+    $form['cardinality_container']['#disabled'] = TRUE;
+
     // Step through the default value structure and erase any '#default_value'
     // items that are found.
     foreach ($form['default_value']['widget'][0] as &$outer) {

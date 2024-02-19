@@ -2,10 +2,11 @@
 
 namespace Drupal\Tests\metatag\Functional;
 
-use Drupal\metatag\MetatagManager;
-use Drupal\metatag\Entity\MetatagDefaults;
-use Drupal\Tests\BrowserTestBase;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\metatag\Entity\MetatagDefaults;
+use Drupal\metatag\MetatagManager;
+use Drupal\Tests\BrowserTestBase;
+use Drupal\Tests\field_ui\Traits\FieldUiTestTrait;
 
 /**
  * Tests the Metatag administration.
@@ -14,6 +15,7 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
  */
 class MetatagAdminTest extends BrowserTestBase {
 
+  use FieldUiTestTrait;
   use MetatagHelperTrait;
   use StringTranslationTrait;
 
@@ -379,19 +381,8 @@ class MetatagAdminTest extends BrowserTestBase {
     $this->drupalLogin($account);
 
     // Add a Metatag field to the Article content type.
-    $this->drupalGet('admin/structure/types/manage/article/fields/add-field');
     $session = $this->assertSession();
-    $session->statusCodeEquals(200);
-    $edit = [
-      'new_storage_type' => 'metatag',
-      'label' => 'Meta tags',
-      'field_name' => 'meta_tags',
-    ];
-    $this->submitForm($edit, $this->t('Save and continue'));
-    $this->submitForm([], $this->t('Save field settings'));
-    $session->pageTextContains(strip_tags('Updated field Meta tags field settings.'));
-    $this->submitForm([], $this->t('Save settings'));
-    $session->pageTextContains(strip_tags('Saved Meta tags configuration.'));
+    $this->fieldUIAddNewField('admin/structure/types/manage/article', 'meta_tags', 'Metatag', 'metatag');
 
     // Try creating an article, confirm the fields are present. This should be
     // the node default values that are shown.
