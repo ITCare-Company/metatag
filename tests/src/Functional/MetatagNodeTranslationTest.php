@@ -2,7 +2,6 @@
 
 namespace Drupal\Tests\metatag\Functional;
 
-use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\Tests\BrowserTestBase;
 use Drupal\Tests\field_ui\Traits\FieldUiTestTrait;
@@ -15,7 +14,6 @@ use Drupal\Tests\field_ui\Traits\FieldUiTestTrait;
 class MetatagNodeTranslationTest extends BrowserTestBase {
 
   use FieldUiTestTrait;
-  use StringTranslationTrait;
 
   /**
    * Modules to enable.
@@ -105,7 +103,7 @@ class MetatagNodeTranslationTest extends BrowserTestBase {
       'language_configuration[language_alterable]' => TRUE,
       'language_configuration[content_translation]' => TRUE,
     ];
-    $this->submitForm($edit, $this->t('Save'));
+    $this->submitForm($edit, 'Save');
     $session->statusCodeEquals(200);
 
     $this->fieldUIAddNewField(

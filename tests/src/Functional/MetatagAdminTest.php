@@ -2,7 +2,6 @@
 
 namespace Drupal\Tests\metatag\Functional;
 
-use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\metatag\Entity\MetatagDefaults;
 use Drupal\metatag\MetatagManager;
 use Drupal\Tests\BrowserTestBase;
@@ -17,7 +16,6 @@ class MetatagAdminTest extends BrowserTestBase {
 
   use FieldUiTestTrait;
   use MetatagHelperTrait;
-  use StringTranslationTrait;
 
   /**
    * {@inheritdoc}
@@ -280,7 +278,7 @@ class MetatagAdminTest extends BrowserTestBase {
 
     // Create a test node.
     $node = $this->drupalCreateNode([
-      'title' => $this->t('Hello, world!'),
+      'title' => 'Hello, world!',
       'type' => 'article',
     ]);
 
@@ -320,7 +318,7 @@ class MetatagAdminTest extends BrowserTestBase {
     // performant than creating a node for every set of assertions.
     // @see BookTest::testDelete()
     $node = $this->drupalCreateNode([
-      'title' => $this->t('Hello, world!'),
+      'title' => 'Hello, world!',
       'type' => 'article',
     ]);
     $this->drupalGet('node/' . $node->id());
@@ -342,7 +340,7 @@ class MetatagAdminTest extends BrowserTestBase {
 
     // Confirm the fields load properly on the node/add/article page.
     $node = $this->drupalCreateNode([
-      'title' => $this->t('Hello, world!'),
+      'title' => 'Hello, world!',
       'type' => 'article',
     ]);
     $this->drupalGet('node/' . $node->id());

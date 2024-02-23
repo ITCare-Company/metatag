@@ -2,7 +2,6 @@
 
 namespace Drupal\Tests\metatag\Functional;
 
-use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Tests\BrowserTestBase;
 use Drupal\Tests\field_ui\Traits\FieldUiTestTrait;
 
@@ -14,7 +13,6 @@ use Drupal\Tests\field_ui\Traits\FieldUiTestTrait;
 class MetatagApiTest extends BrowserTestBase {
 
   use FieldUiTestTrait;
-  use StringTranslationTrait;
 
   /**
    * Profile to use.
@@ -169,7 +167,7 @@ class MetatagApiTest extends BrowserTestBase {
    */
   public function todoTestUrl() {
     // @code
-    // $save_label = (floatval(\Drupal::VERSION) <= 8.3) ? $this->t('Save and publish') : $this->t('Save');
+    // $save_label = (floatval(\Drupal::VERSION) <= 8.3) ? 'Save and publish' : 'Save';
     // // Tests meta tags with URLs work.
     // $this->drupalGet($this->entity_add_path);
     // $this->assertSession()->statusCodeEquals(200);

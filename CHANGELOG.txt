@@ -8,6 +8,8 @@ Metatag 2.0.x, 2023-xx-xx
 #3408825 by DamienMcKenna: Remove Devel, WebProfiler tests.
 #3413633 by Nikolay Shapovalov, DamienMcKenna, Mingsong: Fix tests for,
   compatibility with Drupal 10.2.
+#3404463 by pilot3, DamienMcKenna, Nikolay Shapovalov, naveenvalecha: Add Gitlab
+  CI test file.
 
 
 Metatag 2.0.0, 2023-06-27

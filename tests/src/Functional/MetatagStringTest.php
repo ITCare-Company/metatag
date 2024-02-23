@@ -2,7 +2,6 @@
 
 namespace Drupal\Tests\metatag\Functional;
 
-use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Tests\BrowserTestBase;
 use Drupal\Tests\field_ui\Traits\FieldUiTestTrait;
 
@@ -14,7 +13,6 @@ use Drupal\Tests\field_ui\Traits\FieldUiTestTrait;
 class MetatagStringTest extends BrowserTestBase {
 
   use FieldUiTestTrait;
-  use StringTranslationTrait;
 
   /**
    * Admin user.
@@ -208,7 +206,7 @@ class MetatagStringTest extends BrowserTestBase {
       'title' => $title_original,
       'description' => $desc_original,
     ];
-    $this->submitForm($edit, $this->t('Save'));
+    $this->submitForm($edit, 'Save');
     $session->statusCodeEquals(200);
 
     // Set up a node without explicit metatag description. This causes the
@@ -276,7 +274,7 @@ class MetatagStringTest extends BrowserTestBase {
       'title' => $title_original,
       'description' => $desc_original,
     ];
-    $this->submitForm($edit, $this->t('Save'));
+    $this->submitForm($edit, 'Save');
     $session->statusCodeEquals(200);
 
     // Set up a node without explicit metatag description. This causes the

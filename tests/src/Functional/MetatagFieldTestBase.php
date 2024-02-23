@@ -264,7 +264,7 @@ abstract class MetatagFieldTestBase extends BrowserTestBase {
     $this->drupalGet($this->entityFieldAdminPath . '/fields/add-field');
     $session = $this->assertSession();
     $session->statusCodeEquals(200);
-    $session->elementExists('css', 'label:contains(' . $this->t('Meta tags') . ')');
+    $session->elementExists('css', 'label:contains("Meta tags")');
   }
 
   /**
@@ -445,7 +445,7 @@ abstract class MetatagFieldTestBase extends BrowserTestBase {
     $edit = $this->entityDefaultValues() + [
       'field_metatag[0][basic][metatag_test_tag]' => 'Kilimanjaro',
     ];
-    $this->submitForm($edit, $this->t('Save'));
+    $this->submitForm($edit, 'Save');
     $entities = \Drupal::entityTypeManager()
       ->getStorage('entity_test')
       ->loadByProperties([$this->entityTitleField => 'Barfoo']);
