@@ -127,7 +127,7 @@ class MetatagAdminTest extends BrowserTestBase {
     drupal_flush_all_caches();
     $this->drupalGet('hit-a-404');
     $session->statusCodeEquals(404);
-    foreach ($values as $metatag => $value) {
+    foreach ($values as $value) {
       $processed_value = \Drupal::token()->replace($value);
       $session->responseContains($processed_value);
     }

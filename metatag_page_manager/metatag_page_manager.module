@@ -5,10 +5,10 @@
  * Contains metatag_page_manager.module.
  */
 
-use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\page_manager\Entity\PageVariant;
+use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\metatag\Entity\MetatagDefaults;
+use Drupal\page_manager\Entity\PageVariant;
 
 /**
  * Implements hook_form_FORM_ID_alter().

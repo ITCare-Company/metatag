@@ -11,7 +11,7 @@ use Drupal\Tests\field_ui\Traits\FieldUiTestTrait;
  *
  * @group metatag
  */
-class XssTest extends BrowserTestBase {
+class MetatagXssTest extends BrowserTestBase {
 
   use FieldUiTestTrait;
   use StringTranslationTrait;

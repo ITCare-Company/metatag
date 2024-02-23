@@ -677,12 +677,6 @@ class MetatagManager implements MetatagManagerInterface {
         ->getId();
     }
 
-    // Use the entity's language code, if one is defined.
-    $langcode = NULL;
-    if ($entity) {
-      $langcode = $entity->language()->getId();
-    }
-
     if (!isset($this->processedTokenCache[$entity_identifier])) {
       $metatag_tags = $this->sortedTags();
 

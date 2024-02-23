@@ -9,7 +9,7 @@ use Drupal\Tests\BrowserTestBase;
  *
  * @group metatag
  */
-class FrontpageTest extends BrowserTestBase {
+class MetatagFrontpageTest extends BrowserTestBase {
 
   use MetatagHelperTrait;
 
@@ -121,17 +121,19 @@ class FrontpageTest extends BrowserTestBase {
     $session->statusCodeEquals(200);
     $this->submitForm($site_edit, 'Save configuration');
     $session->pageTextContains('The configuration options have been saved.');
-    return;
 
     // @todo Finish this?
-    $this->drupalGet('test-page');
-    $session->statusCodeEquals(200);
-    foreach ($edit as $metatag => $metatag_value) {
-      $xpath = $this->xpath("//meta[@name='" . $metatag . "']");
-      $this->assertCount(1, $xpath, 'Exactly one ' . $metatag . ' meta tag found.');
-      $value = $xpath[0]->getAttribute('content');
-      $this->assertEquals($value, $metatag_value);
-    }
+    // @code
+    // $this->drupalGet('test-page');
+    // $session->statusCodeEquals(200);
+    // foreach ($edit as $metatag => $metatag_value) {
+    //   $xpath = $this->xpath("//meta[@name='" . $metatag . "']");
+    //   $assert_message = 'Exactly one ' . $metatag . ' meta tag found.';
+    //   $this->assertCount(1, $xpath, $assert_message);
+    //   $value = $xpath[0]->getAttribute('content');
+    //   $this->assertEquals($value, $metatag_value);
+    // }
+    // @endcode
   }
 
   /**

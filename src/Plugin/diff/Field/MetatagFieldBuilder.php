@@ -32,7 +32,7 @@ class MetatagFieldBuilder extends FieldDiffBuilderBase {
           // Metatag data store as serialize string.
           $metatag_data = metatag_data_decode($values['value']);
 
-          foreach ($metatag_data as $key => $value) {
+          foreach ($metatag_data as $value) {
             $result[$field_key][] = (string) $value;
           }
         }

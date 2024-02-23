@@ -74,7 +74,7 @@ abstract class TagsTestBase extends BrowserTestBase {
       'title' => 'Hello, world!',
       'type' => 'page',
     ]);
-  
+
     // Build a list of all tag objects that will be used later on.
     $tag_manager = \Drupal::service('plugin.manager.metatag.tag');
     $all_tags = [];
@@ -121,7 +121,10 @@ abstract class TagsTestBase extends BrowserTestBase {
             dump([$tag_name => $form_field_xpath]);
           }
           $xpath = $this->xpath($form_field_xpath);
-          $this->assertCount(1, $xpath, new FormattableMarkup('One @tag tag form field found using: @xpath', ['@tag' => $tag_name, '@xpath' => $form_field_xpath]));
+          $this->assertCount(1, $xpath, new FormattableMarkup('One @tag tag form field found using: @xpath', [
+            '@tag' => $tag_name,
+            '@xpath' => $form_field_xpath,
+          ]));
         }
 
         // Get the key value(s) that will be identified for this tag. Make sure
@@ -158,14 +161,20 @@ abstract class TagsTestBase extends BrowserTestBase {
             dump([$tag_name => $tag_string]);
           }
           $xpath = $this->xpath($tag_string);
-          $this->assertCount(1, $xpath, new FormattableMarkup('One @tag tag found using: @xpath', ['@tag' => $tag_name, '@xpath' => $tag_string]));
+          $this->assertCount(1, $xpath, new FormattableMarkup('One @tag tag found using: @xpath', [
+            '@tag' => $tag_name,
+            '@xpath' => $tag_string,
+          ]));
         }
         foreach ($tag->getTestOutputValuesXpath($tag_values[$tag_name]) as $output_string) {
           if ($this->debugMode) {
             dump([$tag_name => $output_string]);
           }
           $xpath = $this->xpath($output_string);
-          $this->assertCount(1, $xpath, new FormattableMarkup('Tag output for @tag found using: @xpath', ['@tag' => $tag_name, '@xpath' => $output_string]));
+          $this->assertCount(1, $xpath, new FormattableMarkup('Tag output for @tag found using: @xpath', [
+            '@tag' => $tag_name,
+            '@xpath' => $output_string,
+          ]));
         }
       }
       continue;

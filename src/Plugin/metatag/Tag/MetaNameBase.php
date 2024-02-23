@@ -17,8 +17,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Each meta tag will extend this base.
  */
-abstract class MetaNameBase extends PluginBase {//implements ContainerFactoryPluginInterface {
-
+abstract class MetaNameBase extends PluginBase {
+  // Implements ContainerFactoryPluginInterface {.
   use MetatagSeparator;
   use StringTranslationTrait;
 
@@ -431,7 +431,7 @@ abstract class MetaNameBase extends PluginBase {//implements ContainerFactoryPlu
     if (!empty($trimlengths['metatag_maxlength_' . $this->id])) {
       $maxlength = intval($trimlengths['metatag_maxlength_' . $this->id]);
       if (is_numeric($maxlength) && $maxlength > 0) {
-        $form['#description'] .= ' ' . $this->t('This will be truncated to a maximum of %max characters after any tokens are processed.', array('%max' => $maxlength));
+        $form['#description'] .= ' ' . $this->t('This will be truncated to a maximum of %max characters after any tokens are processed.', ['%max' => $maxlength]);
 
         // Optional support for the Maxlength module.
         if (\Drupal::moduleHandler()->moduleExists('maxlength')) {

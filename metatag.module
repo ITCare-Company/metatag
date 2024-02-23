@@ -5,6 +5,7 @@
  * Contains metatag.module.
  */
 
+use Drupal\commerce_migrate_commerce\Plugin\migrate\source\commerce1\ProductDisplay;
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Component\Plugin\Factory\DefaultFactory;
 use Drupal\Component\Serialization\Json;
@@ -16,6 +17,7 @@ use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 use Drupal\migrate\Plugin\migrate\destination\EntityContentBase;
 use Drupal\migrate\Plugin\MigrateSourceInterface;
@@ -28,8 +30,6 @@ use Drupal\taxonomy\Plugin\migrate\source\d7\Term as Term7;
 use Drupal\taxonomy\TermInterface;
 use Drupal\user\Plugin\migrate\source\d6\User as User6;
 use Drupal\user\Plugin\migrate\source\d7\User as User7;
-use Drupal\Core\StringTranslation\TranslatableMarkup;
-use Drupal\commerce_migrate_commerce\Plugin\migrate\source\commerce1\ProductDisplay;
 
 /**
  * Implements hook_help().

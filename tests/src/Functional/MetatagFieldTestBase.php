@@ -238,9 +238,6 @@ abstract class MetatagFieldTestBase extends BrowserTestBase {
     $session->statusCodeEquals(200);
     $session->pageTextNotContains('Fatal error');
 
-    // Allow the fields to be customized if needed.
-    $edit = $this->entityDefaultValues('Barfoo');
-
     // If this entity type supports defaults then verify the global default is
     // not present but that the entity default *is* present.
     $session->fieldValueEquals('field_metatag[0][basic][metatag_test_tag]', $entity_values['metatag_test_tag']);
@@ -424,8 +421,8 @@ abstract class MetatagFieldTestBase extends BrowserTestBase {
     // @todo Confirm the values output correctly.
     // Check the output.
     // @todo Test this.
-    $all_tags = metatag_generate_entity_all_tags($entity);
-    $overrides = metatag_generate_entity_overrides($entity);
+    metatag_generate_entity_all_tags($entity);
+    metatag_generate_entity_overrides($entity);
   }
 
   /**

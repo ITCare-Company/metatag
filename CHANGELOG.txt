@@ -10,6 +10,7 @@ Metatag 2.0.x, 2023-xx-xx
   compatibility with Drupal 10.2.
 #3404463 by pilot3, DamienMcKenna, Nikolay Shapovalov, naveenvalecha: Add Gitlab
   CI test file.
+#3421648 by morgannc, DamienMcKenna: Fixed some coding standards issues.
 
 
 Metatag 2.0.0, 2023-06-27
