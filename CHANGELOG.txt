@@ -11,6 +11,8 @@ Metatag 2.0.x, 2023-xx-xx
 #3404463 by pilot3, DamienMcKenna, Nikolay Shapovalov, naveenvalecha: Add Gitlab
   CI test file.
 #3421648 by morgannc, DamienMcKenna: Fixed some coding standards issues.
+#3423881 by DamienMcKenna: Merge NodeTranslation into
+  MetatagNodeTranslationTest.
 
 
 Metatag 2.0.0, 2023-06-27

@@ -80,15 +80,7 @@ class MetatagNodeTranslationTest extends BrowserTestBase {
     foreach ($this->additionalLangcodes as $langcode) {
       ConfigurableLanguage::createFromLangcode($langcode)->save();
     }
-  }
 
-  /**
-   * Tests the metatag value translations.
-   */
-  public function testMetatagValueTranslation() {
-    $save_label_i18n = 'Save (this translation)';
-
-    // @todo Move to setUp.
     // Set up a content type.
     $name = $this->randomMachineName() . ' ' . $this->randomMachineName();
     $this->drupalLogin($this->adminUser);
@@ -96,16 +88,15 @@ class MetatagNodeTranslationTest extends BrowserTestBase {
 
     // Add a metatag field to the content type.
     $this->drupalGet('admin/structure/types');
-    $session = $this->assertSession();
-    $session->statusCodeEquals(200);
+    $this->assertSession()->statusCodeEquals(200);
     $this->drupalGet('admin/structure/types/manage/metatag_node');
-    $session->statusCodeEquals(200);
+    $this->assertSession()->statusCodeEquals(200);
     $edit = [
       'language_configuration[language_alterable]' => TRUE,
       'language_configuration[content_translation]' => TRUE,
     ];
     $this->submitForm($edit, 'Save');
-    $session->statusCodeEquals(200);
+    $this->assertSession()->statusCodeEquals(200);
 
     $this->fieldUIAddNewField(
       'admin/structure/types/manage/metatag_node',
@@ -116,18 +107,37 @@ class MetatagNodeTranslationTest extends BrowserTestBase {
       ['translatable' => TRUE]
     );
     $this->drupalGet('admin/structure/types/manage/metatag_node/fields/node.metatag_node.field_meta_tags');
-    $session->statusCodeEquals(200);
+    $this->assertSession()->statusCodeEquals(200);
+  }
+
+  /**
+   * Confirm the language translation system isn't accidentally broken.
+   */
+  public function testContentTranslationForm() {
+    $this->drupalGet('/admin/config/regional/content-language');
+    $this->assertSession()->statusCodeEquals(200);
+    $this->assertSession()->pageTextContains('Content language');
+    $this->submitForm([], 'Save configuration');
+    $this->assertSession()->statusCodeEquals(200);
+    $this->assertSession()->pageTextContains('Settings successfully updated.');
+  }
+
+  /**
+   * Tests the metatag value translations.
+   */
+  public function testMetatagValueTranslation() {
+    $save_label_i18n = 'Save (this translation)';
 
     // Set up a node without explicit metatag description. This causes the
     // global default to be used, which contains a token (node:summary). The
     // token value should be correctly translated.
     // Load the node form.
     $this->drupalGet('node/add/metatag_node');
-    $session->statusCodeEquals(200);
+    $this->assertSession()->statusCodeEquals(200);
 
     // Check the default values are correct.
-    $session->fieldValueEquals('field_meta_tags[0][basic][title]', '[node:title] | [site:name]');
-    $session->fieldValueEquals('field_meta_tags[0][basic][description]', '[node:summary]');
+    $this->assertSession()->fieldValueEquals('field_meta_tags[0][basic][title]', '[node:title] | [site:name]');
+    $this->assertSession()->fieldValueEquals('field_meta_tags[0][basic][description]', '[node:summary]');
 
     // Create a node.
     $edit = [
@@ -135,7 +145,7 @@ class MetatagNodeTranslationTest extends BrowserTestBase {
       'body[0][value]' => 'French summary.',
     ];
     $this->submitForm($edit, 'Save');
-    $session->statusCodeEquals(200);
+    $this->assertSession()->statusCodeEquals(200);
 
     $xpath = $this->xpath("//meta[@name='description']");
     $this->assertCount(1, $xpath, 'Exactly one description meta tag found.');
@@ -143,20 +153,20 @@ class MetatagNodeTranslationTest extends BrowserTestBase {
     $this->assertEquals($value, 'French summary.');
 
     $this->drupalGet('node/1/translations/add/en/es');
-    $session->statusCodeEquals(200);
+    $this->assertSession()->statusCodeEquals(200);
     // Check the default values are there.
-    $session->fieldValueEquals('field_meta_tags[0][basic][title]', '[node:title] | [site:name]');
-    $session->fieldValueEquals('field_meta_tags[0][basic][description]', '[node:summary]');
+    $this->assertSession()->fieldValueEquals('field_meta_tags[0][basic][title]', '[node:title] | [site:name]');
+    $this->assertSession()->fieldValueEquals('field_meta_tags[0][basic][description]', '[node:summary]');
 
     $edit = [
       'title[0][value]' => 'Node Español',
       'body[0][value]' => 'Spanish summary.',
     ];
     $this->submitForm($edit, $save_label_i18n);
-    $session->statusCodeEquals(200);
+    $this->assertSession()->statusCodeEquals(200);
 
     $this->drupalGet('es/node/1');
-    $session->statusCodeEquals(200);
+    $this->assertSession()->statusCodeEquals(200);
     $xpath = $this->xpath("//meta[@name='description']");
     $this->assertCount(1, $xpath, 'Exactly one description meta tag found.');
     $value = $xpath[0]->getAttribute('content');
@@ -164,20 +174,20 @@ class MetatagNodeTranslationTest extends BrowserTestBase {
     $this->assertNotEquals($value, 'French summary.');
 
     $this->drupalGet('node/1/edit');
-    $session->statusCodeEquals(200);
+    $this->assertSession()->statusCodeEquals(200);
     // Check the default values are there.
-    $session->fieldValueEquals('field_meta_tags[0][basic][title]', '[node:title] | [site:name]');
-    $session->fieldValueEquals('field_meta_tags[0][basic][description]', '[node:summary]');
+    $this->assertSession()->fieldValueEquals('field_meta_tags[0][basic][title]', '[node:title] | [site:name]');
+    $this->assertSession()->fieldValueEquals('field_meta_tags[0][basic][description]', '[node:summary]');
 
     // Set explicit values on the description metatag instead using the
     // defaults.
     $this->drupalGet('node/1/edit');
-    $session->statusCodeEquals(200);
+    $this->assertSession()->statusCodeEquals(200);
     $edit = [
       'field_meta_tags[0][basic][description]' => 'Overridden French description.',
     ];
     $this->submitForm($edit, $save_label_i18n);
-    $session->statusCodeEquals(200);
+    $this->assertSession()->statusCodeEquals(200);
 
     $xpath = $this->xpath("//meta[@name='description']");
     $this->assertCount(1, $xpath, 'Exactly one description meta tag found.');
@@ -187,12 +197,12 @@ class MetatagNodeTranslationTest extends BrowserTestBase {
     $this->assertNotEquals($value, 'French summary.');
 
     $this->drupalGet('es/node/1/edit');
-    $session->statusCodeEquals(200);
+    $this->assertSession()->statusCodeEquals(200);
     $edit = [
       'field_meta_tags[0][basic][description]' => 'Overridden Spanish description.',
     ];
     $this->submitForm($edit, $save_label_i18n);
-    $session->statusCodeEquals(200);
+    $this->assertSession()->statusCodeEquals(200);
 
     $xpath = $this->xpath("//meta[@name='description']");
     $this->assertCount(1, $xpath, 'Exactly one description meta tag found.');
