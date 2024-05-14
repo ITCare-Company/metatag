@@ -14,6 +14,7 @@ Metatag 2.0.x, 2023-xx-xx
 #3423881 by DamienMcKenna: Merge NodeTranslation into
   MetatagNodeTranslationTest.
 #3433055 by DamienMcKenna: Fixed test filenames.
+#3447058 by DamienMcKenna: Update info files for Drupal 11.
 
 
 Metatag 2.0.0, 2023-06-27
