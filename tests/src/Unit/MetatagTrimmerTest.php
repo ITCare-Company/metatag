@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\metatag\Unit;
+namespace Drupal\Tests\metatag\Unit;
 
 use Drupal\metatag\MetatagTrimmer;
 use Drupal\Tests\UnitTestCase;

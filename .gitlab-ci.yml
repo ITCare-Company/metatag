@@ -59,6 +59,8 @@ include:
 #   OPT_IN_TEST_NEXT_MAJOR: '1'
 #   _CURL_TEMPLATES_REF: 'main'
 variables:
+  # Run tests in parallel.
+  _PHPUNIT_CONCURRENT: '1'
   # Don't waste time running cspell, it barfs over "broadstreet" and related
   # words.
   SKIP_CSPELL: '1'
