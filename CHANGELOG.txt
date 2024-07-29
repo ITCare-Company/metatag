@@ -18,6 +18,8 @@ Metatag 2.0.x, 2023-xx-xx
 #3462134 by ankitv18, DamienMcKenna: Fix phpcs and cspell issues.
 #3454762 by johnjw59@gmail.com, DamienMcKenna: Page Manager meta tags added
   twice.
+#3460593 by DamienMcKenna, porchlight, acbramley: Update MetatagFieldBuilder
+  ::build for compatibility with Diff v2.
 
 
 Metatag 2.0.0, 2023-06-27

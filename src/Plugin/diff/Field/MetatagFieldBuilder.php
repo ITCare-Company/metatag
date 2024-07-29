@@ -21,7 +21,7 @@ class MetatagFieldBuilder extends FieldDiffBuilderBase {
   /**
    * {@inheritdoc}
    */
-  public function build(FieldItemListInterface $field_items) {
+  public function build(FieldItemListInterface $field_items): mixed {
     $result = [];
 
     // Every item from $field_items is of type FieldItemInterface.
