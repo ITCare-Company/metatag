@@ -15,6 +15,7 @@ Metatag 2.0.x, 2023-xx-xx
   MetatagNodeTranslationTest.
 #3433055 by DamienMcKenna: Fixed test filenames.
 #3447058 by DamienMcKenna: Update info files for Drupal 11.
+#3462134 by ankitv18, DamienMcKenna: Fix phpcs and cspell issues.
 
 
 Metatag 2.0.0, 2023-06-27

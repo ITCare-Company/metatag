@@ -4,7 +4,6 @@ namespace Drupal\Tests\metatag\Functional;
 
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Tests\BrowserTestBase;
-use Symfony\Component\DependencyInjection\Container;
 
 /**
  * Base class to test all of the meta tags that are in a specific module.

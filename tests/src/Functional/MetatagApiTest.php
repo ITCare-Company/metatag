@@ -83,9 +83,10 @@ class MetatagApiTest extends BrowserTestBase {
     // @todo Work out a better solution for this, as the entity type is not
     // actually used.
     // @code
+    // phpcs:ignore
     // $this->fieldUIAddNewField('admin/structure/types/manage/entity_test', 'metatag', 'Metatag', 'metatag');
     // $this->container->get('entity_field.manager')
-    //   ->clearCachedFieldDefinitions();
+    // ->clearCachedFieldDefinitions();
     // @endcode
   }
 
@@ -168,7 +169,8 @@ class MetatagApiTest extends BrowserTestBase {
    */
   public function todoTestUrl() {
     // @code
-    // $save_label = (floatval(\Drupal::VERSION) <= 8.3) ? 'Save and publish' : 'Save';
+    // $save_label = (floatval(\Drupal::VERSION) <= 8.3) ?
+    // 'Save and publish' : 'Save';
     // // Tests meta tags with URLs work.
     // $this->drupalGet($this->entity_add_path);
     // $this->assertSession()->statusCodeEquals(200);

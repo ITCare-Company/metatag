@@ -54,20 +54,20 @@ include:
 #
 # Docs at https://git.drupalcode.org/project/gitlab_templates/-/blob/main/includes/include.drupalci.variables.yml
 ################
-# variables:
-#   SKIP_ESLINT: '1'
-#   OPT_IN_TEST_NEXT_MAJOR: '1'
-#   _CURL_TEMPLATES_REF: 'main'
+
 variables:
   # Run tests in parallel.
-  _PHPUNIT_CONCURRENT: '1'
-  # Don't waste time running cspell, it barfs over "broadstreet" and related
-  # words.
-  SKIP_CSPELL: '1'
+  _PHPUNIT_CONCURRENT: 1
   # Run tests against the previous and next core minor releases, to help make
   # sure small changes don't break anything too quickly.
-  OPT_IN_TEST_NEXT_MINOR: '1'
-  OPT_IN_TEST_PREVIOUS_MINOR: '1'
+  OPT_IN_TEST_NEXT_MINOR: 1
+  OPT_IN_TEST_PREVIOUS_MINOR: 1
+
+phpcs:
+  allow_failure: false
+
+cspell:
+  allow_failure: false
 
 ###################################################################################
 #

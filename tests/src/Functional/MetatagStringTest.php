@@ -162,7 +162,7 @@ class MetatagStringTest extends BrowserTestBase {
     $this->drupalGet('<front>');
     $session->statusCodeEquals(200);
 
-    // Again, with xpath the HTML entities will be parsed automagically.
+    // Again, with xpath the HTML entities will be parsed automatically.
     $xpath_title = current($this->xpath("//title"))->getText();
     $this->assertEquals($xpath_title, $title_original);
     $this->assertNotEquals($xpath_title, $title_encoded);
@@ -175,7 +175,7 @@ class MetatagStringTest extends BrowserTestBase {
     $session->responseNotContains('<title>' . $title_original . '</title>');
     $session->responseNotContains('<title>' . $title_encodeded . '</title>');
 
-    // Again, with xpath the HTML entities will be parsed automagically.
+    // Again, with xpath the HTML entities will be parsed automatically.
     $xpath = $this->xpath("//meta[@name='description']");
     $this->assertEquals($xpath[0]->getAttribute('content'), $desc_original);
     $this->assertNotEquals($xpath[0]->getAttribute('content'), $desc_encoded);
@@ -226,7 +226,7 @@ class MetatagStringTest extends BrowserTestBase {
     $this->drupalGet('node/1');
     $session->statusCodeEquals(200);
 
-    // Again, with xpath the HTML entities will be parsed automagically.
+    // Again, with xpath the HTML entities will be parsed automatically.
     $xpath_title = current($this->xpath("//title"))->getText();
     $this->assertEquals($xpath_title, $title_original);
     $this->assertNotEquals($xpath_title, $title_encoded);
@@ -236,7 +236,7 @@ class MetatagStringTest extends BrowserTestBase {
     // because assertRaw() checks the raw HTML, not the parsed strings like
     // xpath does.
     $session->responseContains('<title>' . $title_encoded . '</title>');
-    // Again, with xpath the HTML entities will be parsed automagically.
+    // Again, with xpath the HTML entities will be parsed automatically.
     $xpath = $this->xpath("//meta[@name='description']");
     $value = $xpath[0]->getAttribute('content');
     $this->assertEquals($value, $desc_original);
@@ -294,7 +294,7 @@ class MetatagStringTest extends BrowserTestBase {
     $this->drupalGet('node/1');
     $session->statusCodeEquals(200);
 
-    // With xpath the HTML entities will be parsed automagically.
+    // With xpath the HTML entities will be parsed automatically.
     $xpath = $this->xpath("//meta[@name='description']");
     $value = $xpath[0]->getAttribute('content');
     $this->assertEquals($value, $desc_original);

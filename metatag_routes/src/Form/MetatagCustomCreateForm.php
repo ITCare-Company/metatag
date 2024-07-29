@@ -52,7 +52,7 @@ class MetatagCustomCreateForm extends FormBase {
     EntityTypeManagerInterface $entity_type_manager,
     RouteProvider $route_provider,
     PathValidator $path_validator,
-    AdminContext $admin_context
+    AdminContext $admin_context,
   ) {
     $this->entityTypeManager = $entity_type_manager;
     $this->routeProvider = $route_provider;

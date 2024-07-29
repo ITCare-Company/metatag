@@ -128,7 +128,8 @@ class MetatagManager implements MetatagManagerInterface {
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The Config Factory.
    */
-  public function __construct(MetatagGroupPluginManager $groupPluginManager,
+  public function __construct(
+    MetatagGroupPluginManager $groupPluginManager,
     MetatagTagPluginManager $tagPluginManager,
     MetatagToken $token,
     LoggerChannelFactoryInterface $channelFactory,
@@ -137,7 +138,7 @@ class MetatagManager implements MetatagManagerInterface {
     RouteMatchInterface $routeMatch,
     RequestStack $requestStack,
     LanguageManagerInterface $languageManager,
-    ConfigFactoryInterface $config_factory
+    ConfigFactoryInterface $config_factory,
   ) {
     $this->groupPluginManager = $groupPluginManager;
     $this->tagPluginManager = $tagPluginManager;
