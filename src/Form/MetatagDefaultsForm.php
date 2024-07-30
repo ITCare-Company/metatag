@@ -25,6 +25,13 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class MetatagDefaultsForm extends EntityForm {
 
   /**
+   * The Metatag defaults object being reverted.
+   *
+   * @var \Drupal\metatag\Entity\MetatagDefaults
+   */
+  protected $entity;
+
+  /**
    * The entity type bundle info service.
    *
    * @var \Drupal\Core\Entity\EntityTypeBundleInfoInterface

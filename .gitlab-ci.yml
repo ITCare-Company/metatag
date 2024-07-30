@@ -63,10 +63,15 @@ variables:
   OPT_IN_TEST_NEXT_MINOR: 1
   OPT_IN_TEST_PREVIOUS_MINOR: 1
 
+# Don't allow failures from coding standards tests.
+cspell:
+  allow_failure: false
 phpcs:
   allow_failure: false
-
-cspell:
+# @todo Fix all phpstan issues.
+# phstan:
+#   allow_failure: false
+stylelint:
   allow_failure: false
 
 ###################################################################################

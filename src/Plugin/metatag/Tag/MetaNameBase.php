@@ -664,8 +664,8 @@ abstract class MetaNameBase extends PluginBase {
    *
    * To skip testing the form field exists, return an empty array.
    *
-   * @return string
-   *   An xpath-formatted string for matching a field on the form.
+   * @return array
+   *   A list of xpath-formatted strings for matching a field on the form.
    */
   public function getTestFormXpath(): array {
     // "Long" values use a text area on the form, so handle them automatically.

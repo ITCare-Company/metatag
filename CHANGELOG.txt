@@ -20,6 +20,8 @@ Metatag 2.0.x, 2023-xx-xx
   twice.
 #3460593 by DamienMcKenna, porchlight, acbramley: Update MetatagFieldBuilder
   ::build for compatibility with Diff v2.
+#3423428 by DamienMcKenna, naveenvalecha: cspell, stylelint coding standards
+  fixes.
 
 
 Metatag 2.0.0, 2023-06-27
