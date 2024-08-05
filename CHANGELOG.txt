@@ -1,4 +1,4 @@
-Metatag 2.0.x, 2024-xx-xx
+Metatag 2.0.2, 2024-08-05
 -------------------------
 #3465991 by podarok, DamienMcKenna: Allow installation on Drupal 11 via
   composer.json.
