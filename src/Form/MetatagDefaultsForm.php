@@ -353,8 +353,6 @@ class MetatagDefaultsForm extends EntityForm {
     $unsupported_types = [
       // Custom blocks.
       'block_content',
-      // Comments.
-      'comment',
       // Contact messages are the messages submitted on individual contact forms
       // so obviously shouldn't get meta tags.
       'contact_message',

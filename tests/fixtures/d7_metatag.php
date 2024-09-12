@@ -9,6 +9,7 @@ use Drupal\Core\Database\Database;
 
 $connection = Database::getConnection();
 
+// Primary records for Metatag entity data.
 $connection->schema()->createTable('metatag', [
   'fields' => [
     'entity_type' => [
@@ -136,6 +137,148 @@ $connection->insert('metatag')
     'data' => serialize([
       'keywords' => ['value' => 'a taxonomy'],
       'canonical' => ['value' => 'the-term'],
+    ]),
+  ])
+  ->execute();
+
+// Metatag global configuration.
+$connection->schema()->createTable('metatag_config', [
+  'fields' => [
+    'cid' => [
+      'type' => 'serial',
+      'unsigned' => TRUE,
+      'not null' => TRUE,
+      'description' => 'The primary identifier for a metatag configuration set.',
+      'no export' => TRUE,
+    ],
+    'instance' => [
+      'type' => 'varchar',
+      'length' => 255,
+      'not null' => TRUE,
+      'default' => '',
+      'description' => 'The machine-name of the configuration, typically entity-type:bundle.',
+    ],
+    'config' => [
+      'type' => 'blob',
+      'size' => 'big',
+      'not null' => TRUE,
+      'serialize' => TRUE,
+      'description' => 'Serialized data containing the meta tag configuration.',
+      'translatable' => TRUE,
+    ],
+  ],
+  'primary key' => ['cid'],
+  'unique keys' => [
+    'instance' => ['instance'],
+  ],
+  'mysql_character_set' => 'utf8',
+]);
+
+$connection->insert('metatag_config')
+  ->fields(['instance', 'config'])
+  ->values([
+    'instance' => 'global',
+    'config' => serialize([
+      'title' => [
+        'value' => 'I\'m in heaven!',
+      ],
+      'description' => [
+        'value' => 'Mango heaven!',
+      ],
+      'robots' => [
+        'value' => [
+          'nofollow' => 'nofollow',
+          'noindex' => 'noindex',
+        ],
+      ],
+    ]),
+  ])
+  ->values([
+    'instance' => 'node',
+    'config' => serialize([
+      'title' => [
+        'value' => '[node:title]',
+      ],
+      'description' => [
+        'value' => 'The summary is: [node:field_summary]',
+      ],
+      'keywords' => [
+        'value' => 'mango, ',
+      ],
+      'robots' => [
+        'value' => [
+          'follow' => 'follow',
+          'index' => 'index',
+        ],
+      ],
+    ]),
+  ])
+  ->values([
+    'instance' => 'node:article',
+    'config' => serialize([
+      'keywords' => [
+        'value' => 'Alphonso, Angie, Julie',
+      ],
+      'robots' => [
+        'value' => [
+          'nofollow' => 'nofollow',
+          'noindex' => 'noindex',
+        ],
+      ],
+    ]),
+  ])
+  ->values([
+    'instance' => 'taxonomy_term',
+    'config' => serialize([
+      'title' => [
+        'value' => '[term:name]',
+      ],
+      'description' => [
+        'value' => 'The summary is: [term;description]',
+      ],
+      'keywords' => [
+        'value' => 'mango, ',
+      ],
+      'robots' => [
+        'value' => [
+          'follow' => 'follow',
+          'index' => 'index',
+        ],
+      ],
+    ]),
+  ])
+  ->values([
+    'instance' => 'taxonomy_term:tags',
+    'config' => serialize([
+      'keywords' => [
+        'value' => 'Alphonso, Angie, Julie',
+      ],
+      'robots' => [
+        'value' => [
+          'nofollow' => 'nofollow',
+          'noindex' => 'noindex',
+        ],
+      ],
+    ]),
+  ])
+  ->values([
+    'instance' => 'user',
+    'config' => serialize([
+      'title' => [
+        'value' => '[user:name]',
+      ],
+      'description' => [
+        'value' => 'The summary is: [user;name]',
+      ],
+      'keywords' => [
+        'value' => 'mango, ',
+      ],
+      'robots' => [
+        'value' => [
+          'follow' => 'follow',
+          'index' => 'index',
+        ],
+      ],
     ]),
   ])
   ->execute();
