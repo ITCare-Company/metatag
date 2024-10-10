@@ -110,12 +110,15 @@ class MetatagEntitiesTest extends MigrateDrupal7TestBase {
       'd7_node_complete',
       'd7_taxonomy_term',
     ]);
+
+    // Runs the Metatag-D7 settings migration.
+    $this->executeMigrations(['d7_metatag_settings']);
   }
 
   /**
-   * Test Metatag migration from Drupal 7 to 8.
+   * Test Metatag entity data migration from Drupal 7 to 8.
    */
-  public function testMetatag() {
+  public function testMetatagEntities() {
     /** @var \Drupal\node\Entity\Node $node */
     $node = Node::load(998);
     $this->assertInstanceOf(NodeInterface::class, $node);
@@ -164,6 +167,25 @@ class MetatagEntitiesTest extends MigrateDrupal7TestBase {
       'keywords' => 'a taxonomy',
     ];
     $this->assertSame(Json::encode($expected), $term->field_metatag->value);
+  }
+
+  /**
+   * Test Metatag settings migration from Drupal 7 to 8.
+   */
+  public function testMetatagSettings() {
+    // Load the Metatag config object.
+    $config = \Drupal::config('metatag.settings');
+    
+    // Compare the settings in the config object with what was migrated.
+    $this->assertSame($config->get('separator'), '||');
+    $this->assertSame($config->get('use_maxlength'), FALSE);
+
+    // Compare each of the maxlength trim options.
+    $trims = $config->get('tag_trim_maxlength');
+    $this->assertSame($trims['title'], 50);
+    $this->assertSame($trims['description'], 200);
+    $this->assertSame($trims['abstract'], 150);
+    $this->assertSame($trims['keywords'], 1000);
   }
 
 }

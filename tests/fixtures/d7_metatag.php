@@ -400,3 +400,33 @@ $connection->insert('system')
     'info' => 'a:12:{s:4:"name";s:7:"Metatag";s:11:"description";s:47:"Adds support and an API to implement meta tags.";s:7:"package";s:3:"SEO";s:4:"core";s:3:"7.x";s:12:"dependencies";a:3:{i:0;s:23:"drupal:system (>= 7.40)";i:1;s:13:"ctools:ctools";i:2;s:11:"token:token";}s:9:"configure";s:28:"admin/config/search/metatags";s:5:"files";a:30:{i:0;s:11:"metatag.inc";i:1;s:19:"metatag.migrate.inc";i:2;s:22:"metatag.search_api.inc";i:3;s:25:"tests/metatag.helper.test";i:4;s:23:"tests/metatag.unit.test";i:5;s:30:"tests/metatag.tags_helper.test";i:6;s:23:"tests/metatag.tags.test";i:7;s:23:"tests/metatag.node.test";i:8;s:23:"tests/metatag.term.test";i:9;s:23:"tests/metatag.user.test";i:10;s:35:"tests/metatag.core_tag_removal.test";i:11;s:30:"tests/metatag.bulk_revert.test";i:12;s:34:"tests/metatag.string_handling.test";i:13;s:44:"tests/metatag.string_handling_with_i18n.test";i:14;s:22:"tests/metatag.xss.test";i:15;s:33:"tests/metatag.output_caching.test";i:16;s:24:"tests/metatag.image.test";i:17;s:25:"tests/metatag.locale.test";i:18;s:33:"tests/metatag.node.with_i18n.test";i:19;s:33:"tests/metatag.term.with_i18n.test";i:20;s:35:"tests/metatag.with_i18n_output.test";i:21;s:37:"tests/metatag.with_i18n_disabled.test";i:22;s:35:"tests/metatag.with_i18n_config.test";i:23;s:26:"tests/metatag.with_me.test";i:24;s:29:"tests/metatag.with_media.test";i:25;s:30:"tests/metatag.with_panels.test";i:26;s:32:"tests/metatag.with_profile2.test";i:27;s:34:"tests/metatag.with_search_api.test";i:28;s:44:"tests/metatag.with_workbench_moderation.test";i:29;s:29:"tests/metatag.with_views.test";}s:17:"test_dependencies";a:14:{i:0;s:11:"devel:devel";i:1;s:33:"imagecache_token:imagecache_token";i:2;s:37:"entity_translation:entity_translation";i:3;s:9:"i18n:i18n";i:4;s:5:"me:me";i:5;s:23:"file_entity:file_entity";i:6;s:27:"media:media (>= 2.0, < 3.0)";i:7;s:13:"panels:panels";i:8;s:17:"profile2:profile2";i:9;s:13:"entity:entity";i:10;s:21:"search_api:search_api";i:11;s:41:"workbench_moderation:workbench_moderation";i:12;s:11:"views:views";i:13;s:15:"context:context";}s:5:"mtime";i:1550007449;s:7:"version";N;s:3:"php";s:5:"5.2.4";s:9:"bootstrap";i:0;}',
   ])
   ->execute();
+
+// Add variables for the Metatag-D7 settings. These will be converted to
+// values on the "metatag.settings" config object.
+$connection->insert('variable')
+  ->fields(['name', 'value'])
+  ->values([
+    'name' => 'metatag_separator',
+    'value' => serialize('||'),
+  ])
+  ->values([
+    'name' => 'metatag_use_maxlength',
+    'value' => serialize(FALSE),
+  ])
+  ->values([
+    'name' => 'metatag_maxlength_title',
+    'value' => serialize(50),
+  ])
+  ->values([
+    'name' => 'metatag_maxlength_description',
+    'value' => serialize(200),
+  ])
+  ->values([
+    'name' => 'metatag_maxlength_abstract',
+    'value' => serialize(150),
+  ])
+  ->values([
+    'name' => 'metatag_maxlength_keywords',
+    'value' => serialize(1000),
+  ])
+  ->execute();
