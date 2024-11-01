@@ -963,7 +963,6 @@ function _metatag_is_migration_plugin_supported(array $definition) {
       'entity:commerce_shipment',
       'entity:commerce_shipping_method',
       'entity:commerce_stock_location',
-      'entity:commerce_store',
       'entity:linkcheckerlink',
       'entity:path_alias',
       'entity:redirect',

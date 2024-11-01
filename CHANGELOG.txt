@@ -9,6 +9,8 @@ Metatag 2.1.x, 2024-xx-xx
   chandu7929: Automated Drupal 11 compatibility fixes.
 #3311415 by grevil, damienmckenna, anybody: Allow to trim special characters
   from the end.
+#3470415 by murilohp, waspper, damienmckenna: Support the commerce_store entity
+  type.
 
 
 Metatag 2.0.2, 2024-08-05

@@ -373,7 +373,6 @@ class MetatagDefaultsForm extends EntityForm {
       'commerce_shipment',
       'commerce_shipping_method',
       'commerce_stock_location',
-      'commerce_store',
       // LinkChecker.
       'linkcheckerlink',
       // Redirect.
