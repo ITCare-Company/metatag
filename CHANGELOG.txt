@@ -12,6 +12,8 @@ Metatag 2.1.x, 2024-xx-xx
 #3470415 by murilohp, waspper, damienmckenna: Support the commerce_store entity
   type.
 #3466343 by damienmckenna, eyesyte: Support the comment entity type.
+#3377205 by damienmckenna, grevil, gillesbailleux, anybody: Allow OG "See also"
+  to have multiple values.
 
 
 Metatag 2.0.2, 2024-08-05
