@@ -11,6 +11,7 @@ Metatag 2.1.x, 2024-xx-xx
   from the end.
 #3470415 by murilohp, waspper, damienmckenna: Support the commerce_store entity
   type.
+#3466343 by damienmckenna, eyesyte: Support the comment entity type.
 
 
 Metatag 2.0.2, 2024-08-05
