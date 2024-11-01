@@ -231,3 +231,13 @@ function metatag_update_8109(&$sandbox) {
     return (string) t("There were no overridden Metatag records.");
   }
 }
+
+/**
+ * Sets tag_trim_end standard settings for existing installations.
+ */
+function metatag_update_9401() {
+  $config_factory = \Drupal::configFactory();
+  $config = $config_factory->getEditable('metatag.settings');
+  $config->set('tag_trim_end', "|.,-:;/+&([{\"'");
+  $config->save();
+}
