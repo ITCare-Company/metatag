@@ -152,7 +152,7 @@ function metatag_update_8109(&$sandbox) {
         $sandbox['fields'][$field_counter]['field_value_field'] = $field_value_field;
         $sandbox['fields'][$field_counter]['records'] = $records;
 
-        $sandbox['total_records'] += count($sandbox['fields'][$field_counter]['records'] = $records);
+        $sandbox['total_records'] += count($sandbox['fields'][$field_counter]['records']);
         $field_counter++;
       }
     }

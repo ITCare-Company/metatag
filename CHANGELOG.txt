@@ -14,6 +14,7 @@ Metatag 2.1.x, 2024-xx-xx
 #3466343 by damienmckenna, eyesyte: Support the comment entity type.
 #3377205 by damienmckenna, grevil, gillesbailleux, anybody: Allow OG "See also"
   to have multiple values.
+#3469049 by damienmckenna, ankitv18, anybody: Minor typo in metatag.install.
 
 
 Metatag 2.0.2, 2024-08-05
