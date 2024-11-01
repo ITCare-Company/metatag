@@ -106,6 +106,7 @@ class MetatagDefaultsForm extends EntityForm {
    */
   public function form(array $form, FormStateInterface $form_state) {
     $form = parent::form($form, $form_state);
+    /** @var \Drupal\Core\Config\Entity\ConfigEntityInterface $metatag_defaults */
     $metatag_defaults = $this->entity;
 
     $form['#ajax_wrapper_id'] = 'metatag-defaults-form-ajax-wrapper';

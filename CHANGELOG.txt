@@ -5,6 +5,8 @@ Metatag 2.1.x, 2024-xx-xx
 #3454473 by damienmckenna: Migrations: Metatag-D7 misc settings.
 #3479994 by damienmckenna: Split D7 settings migration into a separate test.
 #3485053 by damienmckenna: Fix cspell errors.
+#3433376 by damienmckenna, ankitv18, murilohp, project update bot, jrglasgow,
+  chandu7929: Automated Drupal 11 compatibility fixes.
 
 
 Metatag 2.0.2, 2024-08-05

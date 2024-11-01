@@ -59,10 +59,10 @@ variables:
   # Extra words for CSpell.
   _CSPELL_WORDS: "colonspace"
 
-  # Run tests against the previous and next core minor releases, to help make
+  # Run tests against the previous and next core major releases, to help make
   # sure small changes don't break anything too quickly.
   OPT_IN_TEST_NEXT_MINOR: 1
-  OPT_IN_TEST_PREVIOUS_MINOR: 1
+  OPT_IN_TEST_PREVIOUS_MAJOR: 1
 
   # Run tests in parallel.
   _PHPUNIT_CONCURRENT: 1
@@ -78,6 +78,9 @@ cspell:
 #   allow_failure: false
 stylelint:
   allow_failure: false
+composer (next major):
+  variables:
+    _LENIENT_ALLOW_LIST: page_manager, hal
 
 ###################################################################################
 #
