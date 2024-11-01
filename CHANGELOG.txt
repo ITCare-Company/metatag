@@ -4,6 +4,7 @@ Metatag 2.1.x, 2024-xx-xx
   Metatag-D7 default configurations.
 #3454473 by damienmckenna: Migrations: Metatag-D7 misc settings.
 #3479994 by damienmckenna: Split D7 settings migration into a separate test.
+#3485053 by damienmckenna: Fix cspell errors.
 
 
 Metatag 2.0.2, 2024-08-05
