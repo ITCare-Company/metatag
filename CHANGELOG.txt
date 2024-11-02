@@ -17,6 +17,9 @@ Metatag 2.1.x, 2024-xx-xx
 #3469049 by damienmckenna, ankitv18, anybody: Minor typo in metatag.install.
 #3380911 by naveenvalecha, abhisekmazumdar, eleonel, anybody, damienmckenna,
   2dareis2do, joachim: Add Custom Meta as a submodule.
+#2952675 by biancaradu27, loze, alvar0hurtad0, id.conky, damienmckenna,
+  marysmech, musa.thomas, justskew, smavri, anybody, jason.bell, waldomero,
+  zaporylie: Add support for contextual path arguments.
 
 
 Metatag 2.0.2, 2024-08-05
