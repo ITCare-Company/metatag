@@ -20,6 +20,8 @@ Metatag 2.1.x, 2024-xx-xx
 #2952675 by biancaradu27, loze, alvar0hurtad0, id.conky, damienmckenna,
   marysmech, musa.thomas, justskew, smavri, anybody, jason.bell, waldomero,
   zaporylie: Add support for contextual path arguments.
+#3426426 by damienmckenna, erwangel: Explain that the Administer Metatag
+  permission does not control access to the per-entity field.
 
 
 Metatag 2.0.2, 2024-08-05
