@@ -1,3 +1,7 @@
+Metatag 2.1.x, 202x-xx-xx
+-------------------------
+
+
 Metatag 2.1.0, 2024-11-07
 -------------------------
 #2563651 by damienmckenna, alison, bob.hinrichs, benjifisher: Migration for
