@@ -11,6 +11,8 @@ Metatag 2.1.x, 202x-xx-xx
 #3520695 by damienmckenna: Move functions from metatag.tokens.inc to
   metatag.module.
 #3504986 by andresalvarez, damienmckenna, ggh: Coding standard fixes.
+#3484792 by ivnish, johnjw59, damienmckenna: Update Page Manager integration
+  for latest version.
 
 
 Metatag 2.1.0, 2024-11-07
