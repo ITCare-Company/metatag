@@ -10,6 +10,7 @@ Metatag 2.1.x, 202x-xx-xx
   compatibility fixes in V2UpdatesTest.
 #3520695 by damienmckenna: Move functions from metatag.tokens.inc to
   metatag.module.
+#3504986 by andresalvarez, damienmckenna, ggh: Coding standard fixes.
 
 
 Metatag 2.1.0, 2024-11-07
