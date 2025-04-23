@@ -279,15 +279,23 @@ class MetatagManager implements MetatagManagerInterface {
     foreach ($this->sortedGroups() as $group_name => $group) {
       $tag_weight = $group['weight'] * 100;
 
-      // First, sort the tags within the group according to the original sort
-      // order provided by the tag's definition.
-      uasort($tags[$group_name], [
-        'Drupal\Component\Utility\SortArray',
-        'sortByWeightElement',
-      ]);
-      foreach ($tags[$group_name] as $tag_name => $tag_info) {
-        $tag_info['weight'] = $tag_weight++;
-        $sorted_tags[$tag_name] = $tag_info;
+      // Make sure the tag group is in the correct structure.
+      if (isset($tags[$group_name]) && is_array($tags[$group_name])) {
+        // First, sort the tags within the group according to the original sort
+        // order provided by the tag's definition.
+        uasort($tags[$group_name], [
+          'Drupal\Component\Utility\SortArray',
+          'sortByWeightElement',
+        ]);
+        foreach ($tags[$group_name] as $tag_name => $tag_info) {
+          $tag_info['weight'] = $tag_weight++;
+          $sorted_tags[$tag_name] = $tag_info;
+        }
+      }
+
+      // Log an error message because this shouldn't happen.
+      else {
+        $this->logger->error('Expected an array but got null or other type for group: @group_name', ['@group_name' => $group_name]);
       }
     }
 
