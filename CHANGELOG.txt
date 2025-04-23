@@ -1,5 +1,6 @@
 Metatag 2.1.x, 202x-xx-xx
 -------------------------
+#3515603 by claudiu.cristea, damienmckenna: PHP 8.4 support.
 
 
 Metatag 2.1.0, 2024-11-07
