@@ -6,6 +6,8 @@ Metatag 2.1.x, 202x-xx-xx
   Argument #1 ($array) must be of type array, null given in uasort() (line 285
   of modules\metatag\src\MetatagManager.php).
 #3490807 by ptmkenny, damienmckenna, nickdickinsonwilde: PHP 8.4 deprecations.
+#3499128 by project update bot, damienmckenna: Automated Drupal 11
+  compatibility fixes in V2UpdatesTest.
 
 
 Metatag 2.1.0, 2024-11-07
