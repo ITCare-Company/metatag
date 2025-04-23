@@ -48,4 +48,11 @@ class ComputedMetatagsFieldItem extends FieldItemBase {
     return $value === NULL || $value === [];
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public static function mainPropertyName() {
+    return 'attributes';
+  }
+
 }
