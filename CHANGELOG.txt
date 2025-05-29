@@ -1,4 +1,4 @@
-Metatag 2.1.x, 202x-xx-xx
+Metatag 2.1.1, 2025-05-29
 -------------------------
 #3515603 by claudiu.cristea, damienmckenna: PHP 8.4 support.
 #3518526 by sleitner, damienmckenna: Resolve access check errors.
