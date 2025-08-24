@@ -5,6 +5,8 @@ Metatag 2.1.x, 2025-xx-xx
 #3541868 by DamienMcKenna: Fix styleint test failures.
 #3541896 by damienmckenna: Field API changed in 11.2, broke
   MetatagFieldTestBase::testFieldCanBeAdded().
+#3332769 by damienmckenna: Rework random string usage to be safer, fixes erratic
+  Views test failure.
 
 
 Metatag 2.1.1, 2025-05-29
