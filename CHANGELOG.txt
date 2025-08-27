@@ -7,6 +7,8 @@ Metatag 2.1.x, 2025-xx-xx
   MetatagFieldTestBase::testFieldCanBeAdded().
 #3332769 by damienmckenna: Rework random string usage to be safer, fixes erratic
   Views test failure.
+#3529741 by damienmckenna, jchatard: Fixed UTF-8 character handling in meta tag
+  tidy().
 
 
 Metatag 2.1.1, 2025-05-29
