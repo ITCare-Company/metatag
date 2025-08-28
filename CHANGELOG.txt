@@ -9,6 +9,7 @@ Metatag 2.1.x, 2025-xx-xx
   Views test failure.
 #3529741 by damienmckenna, jchatard: Fixed UTF-8 character handling in meta tag
   tidy().
+#3543538 by damienmckenna: Remove redundant MetatagTokenStatusTest.
 
 
 Metatag 2.1.1, 2025-05-29
