@@ -668,9 +668,9 @@ abstract class MetaNameBase extends PluginBase {
           $currentMaxValue = $maxValue;
         }
       }
+      $suffix = (string) $settings->get('tag_trim_suffix');
       $trimmerService = \Drupal::service('metatag.trimmer');
-      // Do the trimming:
-      $value = $trimmerService->trimByMethod($value, $currentMaxValue, $trimMethod, $trimEndChars);
+      $value = $trimmerService->trimByMethod($value, $currentMaxValue, $trimMethod, $trimEndChars, $suffix);
     }
     return $value;
   }
