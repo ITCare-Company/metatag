@@ -8,6 +8,7 @@ Metatag 2.2.x, 2025-xx-xx
 #3272202 by anybody, damienmckenna, grevil: Add <none> placeholder to clear /
   unset inherited value.
 #3545780 by damienmckenna: Optionally add suffix after meta tags are trimmed.
+#3545784 by damienmckenna: Rework MetaTagCustomTag to extend MetaNameBase.
 
 
 Metatag 2.1.2, 2025-09-04
