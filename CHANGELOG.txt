@@ -9,6 +9,8 @@ Metatag 2.2.x, 2025-xx-xx
   unset inherited value.
 #3545780 by damienmckenna: Optionally add suffix after meta tags are trimmed.
 #3545784 by damienmckenna: Rework MetaTagCustomTag to extend MetaNameBase.
+#3336142 by damienmckenna, pooja_sharma, sidharth_soman, jvbrian, schillerm,
+  admirlju: List the total number of plugins on the reports page.
 
 
 Metatag 2.1.2, 2025-09-04
