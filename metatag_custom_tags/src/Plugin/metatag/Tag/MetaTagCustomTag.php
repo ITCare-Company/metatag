@@ -35,6 +35,13 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class MetaTagCustomTag extends MetaNameBase {
 
   /**
+   * The attributes of this tag.
+   *
+   * @var array
+   */
+  protected $attributes;
+
+  /**
    * The string this tag uses for the element itself.
    *
    * @var string
@@ -49,8 +56,8 @@ class MetaTagCustomTag extends MetaNameBase {
 
     // Additional elements.
     $this->htmlElement = $plugin_definition['htmlElement'] ?? 'meta';
-    $this->htmlNameAttribute = $plugin_definition['htmlNameAttribute'] ?? 'name';
-    $this->htmlValueAttribute = $plugin_definition['htmlValueAttribute'] ?? 'content';
+    $this->htmlValueAttribute = $plugin_definition['htmlValueAttribute'] ?? '';
+    $this->attributes = $plugin_definition['attributes'] ?? [];
   }
 
   /**
@@ -60,15 +67,60 @@ class MetaTagCustomTag extends MetaNameBase {
    *   A render array.
    */
   public function output(): array {
-    // Start with the original output.
-    $output = parent::output();
-
-    // Change the 'tag' value to the HTML element defined in this plugin.
-    foreach ($output as $key => $tag) {
-      $output[$key]['#tag'] = $this->htmlElement;
+    // If there is no value, just return either an empty array.
+    if (is_null($this->value) || $this->value == '') {
+      return [];
     }
 
-    return $output;
+    // Get configuration.
+    $separator = $this->getSeparator();
+
+    // If this contains embedded image tags, extract the image URLs.
+    if ($this->type() === 'image') {
+      $value = $this->parseImageUrl($this->value);
+    }
+    else {
+      $value = PlainTextOutput::renderFromHtml($this->value);
+    }
+
+    $values = $this->multiple() ? explode($separator, $value) : [$value];
+    $elements = [];
+    foreach ($values as $value) {
+      $value = $this->tidy($value);
+      if ($value != '' && $this->requiresAbsoluteUrl()) {
+        // Relative URL.
+        if (parse_url($value, PHP_URL_HOST) == NULL) {
+          $value = $this->request->getSchemeAndHttpHost() . $value;
+        }
+        // Protocol-relative URL.
+        elseif (substr($value, 0, 2) === '//') {
+          $value = $this->request->getScheme() . ':' . $value;
+        }
+      }
+
+      // If tag must be secure, convert all http:// to https://.
+      if ($this->secure() && strpos($value, 'http://') !== FALSE) {
+        $value = str_replace('http://', 'https://', $value);
+      }
+
+      $value = $this->trimValue($value);
+
+      $attributes = [];
+      foreach ($this->attributes as $attribute) {
+        $attributes[$attribute['name']] = $attribute['value'];
+      }
+      // Add value attribute.
+      $attributes[$this->htmlValueAttribute] = $value;
+      // Filter empty attributes.
+      $attributes = array_filter($attributes);
+
+      $elements[] = [
+        '#tag' => $this->htmlElement,
+        '#attributes' => $attributes,
+      ];
+    }
+
+    return $this->multiple() ? $elements : reset($elements);
   }
 
   /**
@@ -78,7 +130,7 @@ class MetaTagCustomTag extends MetaNameBase {
    *   A list of xpath-formatted string(s) for matching a field on the page.
    */
   public function getTestOutputExistsXpath(): array {
-    return ["//" . $this->htmlElement . "[@" . $this->htmlNameAttribute . "='{$this->name}']"];
+    return ["//" . $this->htmlElement . "[@" . $this->attributes[0]['name'] . "='{$this->attributes[0]['value']}']"];
   }
 
   /**
@@ -93,7 +145,7 @@ class MetaTagCustomTag extends MetaNameBase {
   public function getTestOutputValuesXpath(array $values): array {
     $xpath_strings = [];
     foreach ($values as $value) {
-      $xpath_strings[] = "//" . $this->htmlElement . "[@" . $this->htmlNameAttribute . "='{$this->name}' and @" . $this->htmlValueAttribute . "='{$value}']";
+      $xpath_strings[] = "//" . $this->htmlElement . "[@" . $this->attributes[0]['name'] . "='{$this->attributes[0]['value']}' and @" . $this->htmlValueAttribute . "='{$value}']";
     }
     return $xpath_strings;
   }
