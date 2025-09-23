@@ -1,4 +1,4 @@
-Metatag 2.2.x, 2025-xx-xx
+Metatag 2.2.0, 2025-09-23
 -------------------------
 #3458724 by damienmckenna, rachel_norfolk, pacproduct, petr illek: Add support
   for fediverse:creator.
