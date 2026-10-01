@@ -89,24 +89,26 @@ class MetatagViewsCacheWrapper extends CachePluginBase {
   public function cacheGet($type) {
     switch ($type) {
       case self::RESULTS:
-        $cutoff = $this->plugin->cacheExpire($type);
         // Values to set: $view->result, $view->total_rows,
         // $view->current_page and pass row tokens to metatag display extender.
+        //
+        // No longer calls CachePluginBase::cacheExpire() (deprecated,
+        // CR#3576855): the cache system itself never returns an expired
+        // entry (cacheGet() already respects the max-age set in cacheSet()),
+        // so the extra cutoff check was redundant.
         if ($cache = \Drupal::cache($this->plugin->resultsBin)->get($this->plugin->generateResultsKey())) {
-          if (!$cutoff || $cache->created > $cutoff) {
-            $view = $this->plugin->view;
-            $view->result = $cache->data['result'];
-            // Load entities for each result.
-            $view->query->loadEntities($view->result);
-            $view->total_rows = $cache->data['total_rows'];
-            $view->setCurrentPage($cache->data['current_page']);
-            $extenders = $view->getDisplay()->getExtenders();
-            if (isset($extenders['metatag_display_extender'])) {
-              /** @var \Drupal\metatag_views\Plugin\views\display_extender\MetatagDisplayExtender $extenders['metatag_display_extender'] */
-              $extenders['metatag_display_extender']->setFirstRowTokens($cache->data['first_row_tokens']);
-            }
-            return TRUE;
+          $view = $this->plugin->view;
+          $view->result = $cache->data['result'];
+          // Load entities for each result.
+          $view->query->loadEntities($view->result);
+          $view->total_rows = $cache->data['total_rows'];
+          $view->setCurrentPage($cache->data['current_page']);
+          $extenders = $view->getDisplay()->getExtenders();
+          if (isset($extenders['metatag_display_extender'])) {
+            /** @var \Drupal\metatag_views\Plugin\views\display_extender\MetatagDisplayExtender $extenders['metatag_display_extender'] */
+            $extenders['metatag_display_extender']->setFirstRowTokens($cache->data['first_row_tokens']);
           }
+          return TRUE;
         }
         return FALSE;
 
@@ -180,6 +182,12 @@ class MetatagViewsCacheWrapper extends CachePluginBase {
 
   /**
    * {@inheritdoc}
+   *
+   * @see https://www.drupal.org/node/3564958
+   *   CR#3564958: core no longer calls this method from 11.4.0 onward (row-
+   *   level view-row caching was removed entirely, no replacement). This
+   *   override becomes unreachable dead code on 11.4+/12 but is otherwise
+   *   harmless to keep for older cores.
    */
   public function getRowCacheKeys(ResultRow $row) {
     return $this->plugin->getRowCacheKeys($row);
