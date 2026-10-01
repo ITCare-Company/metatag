@@ -586,7 +586,19 @@ function metatag_entity_base_field_info(EntityTypeInterface $entity_type) {
   $base_table = $entity_type->getBaseTable();
   $canonical_template_exists = $entity_type->hasLinkTemplate('canonical');
   // Certain classes are just not supported.
-  $original_class = $entity_type->getOriginalClass();
+  // EntityTypeInterface::getOriginalClass() was removed in Drupal 12 (no
+  // deprecation period); getDecoratedClasses() is the replacement: its first
+  // entry is the original, undecorated class if the entity type's class was
+  // ever overridden via setClass(), otherwise the class was never decorated
+  // and getClass() is already the original. Older cores (10/11) don't have
+  // getDecoratedClasses(), so fall back to the old method there.
+  if (method_exists($entity_type, 'getDecoratedClasses')) {
+    $original_class = $entity_type->getDecoratedClasses()[0] ?? $entity_type->getClass();
+  }
+  else {
+    // @phpstan-ignore-next-line
+    $original_class = $entity_type->getOriginalClass();
+  }
   $classes_to_skip = [
     'Drupal\comment\Entity\Comment',
   ];
