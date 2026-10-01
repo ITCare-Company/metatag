@@ -2,6 +2,7 @@
 
 namespace Drupal\metatag;
 
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Config\Entity\ConfigEntityListBuilder;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
@@ -87,8 +88,8 @@ class MetatagDefaultsListBuilder extends ConfigEntityListBuilder {
   /**
    * {@inheritdoc}
    */
-  public function getOperations(EntityInterface $entity) {
-    $operations = parent::getOperations($entity);
+  public function getOperations(EntityInterface $entity, ?CacheableMetadata $cacheability = NULL) {
+    $operations = parent::getOperations($entity, $cacheability);
 
     // Global and entity defaults can be reverted but not deleted.
     if (in_array($entity->id(), MetatagManager::protectedDefaults())) {
