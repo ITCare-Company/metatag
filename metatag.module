@@ -192,6 +192,7 @@ function metatag_module_implements_alter(&$implementations, $hook) {
 /**
  * Implements hook_page_attachments_alter().
  */
+#[\Drupal\Core\Hook\Attribute\Hook('page_attachments_alter', order: \Drupal\Core\Hook\Order\Order::Last)]
 function metatag_page_attachments_alter(array &$attachments) {
   $route_match = \Drupal::routeMatch();
   // Can be removed once https://www.drupal.org/node/2282029 is fixed.
