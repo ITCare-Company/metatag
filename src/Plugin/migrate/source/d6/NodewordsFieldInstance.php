@@ -3,8 +3,8 @@
 namespace Drupal\metatag\Plugin\migrate\source\d6;
 
 use Drupal\Core\Entity\EntityTypeBundleInfoInterface;
+use Drupal\metatag\Plugin\migrate\source\DrupalSqlBase;
 use Drupal\migrate\Plugin\MigrationInterface;
-use Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**

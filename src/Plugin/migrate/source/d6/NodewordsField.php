@@ -2,7 +2,7 @@
 
 namespace Drupal\metatag\Plugin\migrate\source\d6;
 
-use Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase;
+use Drupal\metatag\Plugin\migrate\source\DrupalSqlBase;
 
 /**
  * Drupal 6 Nodewords field.

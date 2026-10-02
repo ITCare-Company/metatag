@@ -3,7 +3,7 @@
 namespace Drupal\metatag\Plugin\migrate\source\d7;
 
 use Drupal\metatag\Plugin\migrate\MigrateMetatagD7Trait;
-use Drupal\migrate_drupal\Plugin\migrate\source\DrupalSqlBase;
+use Drupal\metatag\Plugin\migrate\source\DrupalSqlBase;
 
 /**
  * Drupal 7 Metatag configuration.
