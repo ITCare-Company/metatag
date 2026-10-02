@@ -189,17 +189,14 @@ function metatag_module_implements_alter(&$implementations, $hook) {
   }
 }
 
-/**
- * Implements hook_page_attachments_alter().
- */
-#[\Drupal\Core\Hook\Attribute\Hook('page_attachments_alter', order: \Drupal\Core\Hook\Order\Order::Last)]
-function metatag_page_attachments_alter(array &$attachments) {
-  $route_match = \Drupal::routeMatch();
-  // Can be removed once https://www.drupal.org/node/2282029 is fixed.
-  if ($route_match->getRouteName() == 'entity.taxonomy_term.canonical' && ($term = $route_match->getParameter('taxonomy_term')) && $term instanceof TermInterface) {
-    _metatag_remove_duplicate_entity_tags($attachments);
-  }
-}
+// hook_page_attachments_alter() moved to
+// \Drupal\metatag\Hook\MetatagPageAttachmentsHooks::pageAttachmentsAlter()
+// -- D12 (change record 3496788): the "run last" ordering requires the OOP
+// #[Hook(order:...)] pathway; core's procedural-file hook scan never reads
+// an attribute's order parameter (see
+// HookCollectorPass::collectModuleHookImplementations(),
+// core/lib/Drupal/Core/Hook/HookCollectorPass.php:397-405 vs. 424-466), so a
+// bare-function attribute here was silently inert.
 
 /**
  * Implements hook_entity_view_alter().
